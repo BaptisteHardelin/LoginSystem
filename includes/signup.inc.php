@@ -22,6 +22,10 @@ if (isset($_POST['submit'])) {
 
     // TODO
     /* We can check if the password is 8 length and if they are numbers on it */
+    if (goodSecurePassword($password)) {
+        header("Location: http://localhost/LoginSystem/signup.php?error=notsecurepassword");
+        exit();
+    }
 
     if (passwordMatch($password, $repeatPassword)) {
         header("Location: http://localhost/LoginSystem/signup.php?error=passwordsdontmatch");

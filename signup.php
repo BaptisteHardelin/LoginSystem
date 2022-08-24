@@ -36,8 +36,11 @@ if (isset($_GET['error'])) {
         case 'passwordsdontmatch':
             echo "<p class=error>Passwords don't match!</p>";
             break;
+        case 'notsecurepassword':
+            echo "<p class=error>Passwords can only contains these characters from a to z and from A to Z and 0 from 9 and _ - * @ $ % ù é è à & ^ ç \ / - + ? ; ! § : , and it must be bigger than 8 characters</p>";
+            break;
         case 'usernametaken':
-            echo '<p class=error>The username is already taken!</p>';
+            echo '<p class=error>The username or email are already taken!</p>';
             break;
         case 'none':
             echo "<p>You have signup!<p>";

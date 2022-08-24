@@ -18,6 +18,19 @@ function emptyInputSignup($pseudo, $email, $password, $repeatPassword)
 
 }
 
+function goodSecurePassword($password)
+{
+    $result = null;
+
+    if (preg_match("/^[a-zA-Z0-9_-*@$%ùéèà&^ç\/-+?;!§:,]*$/", $password) && strlen($password) >= 8) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    return $result;
+}
+
 function invalidEmail($email)
 {
     $result = null;
@@ -99,7 +112,7 @@ function createUser($conn, $pseudo, $email, $password)
     mysqli_stmt_bind_param($statement, "sss", $pseudo, $email, $hashedPassword);
     mysqli_stmt_execute($statement);
     mysqli_stmt_close($statement);
-    header("Location: http://localhost/LoginSystem/signup.php?error=none");
+    header("Location: http://localhost/LoginSystem/login.php");
     exit();
 }
 
