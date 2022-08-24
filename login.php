@@ -31,4 +31,6 @@ if (isset($_GET['error'])) {
 ?>
 </form>
 
+<a href="signup.php">Don't have an account ?</a>
+
 <?php include_once 'footer.php';?>

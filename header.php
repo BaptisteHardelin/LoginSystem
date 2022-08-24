@@ -19,7 +19,7 @@ session_start();
 if (isset($_SESSION['pseudo'])) {
 
     echo '<a href="index.php">Home</a>';
-    echo '<a href="logout.php">Logout</a>';
+    echo '<a href="includes/logout.inc.php">Logout</a>';
 
 } else {
     echo '<a href="signup.php">Signup</a>';
