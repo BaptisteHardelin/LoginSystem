@@ -1,6 +1,8 @@
 <?php
 
-use LDAP\Result;
+/**
+ * Signup part !
+ */
 
 function emptyInputSignup($pseudo, $email, $password, $repeatPassword)
 {
@@ -57,7 +59,7 @@ function passwordMatch($password, $repeatPassword)
     return $result;
 }
 
-function pseudoExist($conn, $pseudo, $email)
+function pseudoExists($conn, $pseudo, $email)
 {
     $result = null;
     $sql = "SELECT * FROM users WHERE user_id = ? OR email = ?";
@@ -84,6 +86,7 @@ function pseudoExist($conn, $pseudo, $email)
 
     if ($row = mysqli_fetch_assoc($resultData)) {
         mysqli_stmt_close($statement);
+        echo 'ROW : ' . print_r($row);
         return $row;
     }
 
@@ -111,4 +114,49 @@ function createUser($conn, $pseudo, $email, $password)
     mysqli_stmt_close($statement);
     header("Location: http://localhost/LoginSystem/signup.php?error=none");
     exit();
+}
+
+/**
+ * Login part
+ */
+
+function emptyInputLogin($pseudo, $password)
+{
+    $result = false;
+    if (empty($pseudo) && empty($password)) {
+        $result = true;
+    }
+
+    return $result;
+}
+
+function loginUser($conn, $pseudo, $password)
+{
+    $pseudoExists = pseudoExists($conn, $pseudo, $pseudo);
+
+    if (!$pseudoExists) {
+        header("Location: http://localhost/LoginSystem/login.php?error=wronglogin");
+        exit();
+    }
+
+    /**
+     * password is the column inside the database
+     */
+    $hashedPassword = $pseudoExists["password"];
+    $checkPassword = password_verify($password, $hashedPassword);
+
+    if (!$checkPassword) {
+        header("Location: http://localhost/LoginSystem/login.php?error=wronglogin");
+        exit();
+    } else if ($checkPassword) {
+        session_start();
+        /**
+         * We retrieve the user id and the pseudo inside the database
+         */
+        $_SESSION['user_id'] = $pseudoExists['user_id'];
+        $_SESSION['pseudo'] = $pseudoExists['pseudo'];
+        header("Location: http://localhost/LoginSystem/index.php");
+        exit();
+    }
+
 }

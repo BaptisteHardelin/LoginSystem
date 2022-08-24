@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    if (pseudoExist($conn, $pseudo, $email) !== false) {
+    if (pseudoExists($conn, $pseudo, $email) !== false) {
         header("Location: http://localhost/LoginSystem/signup.php?error=usernametaken");
         exit();
     }

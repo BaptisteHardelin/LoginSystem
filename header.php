@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,16 @@
 </head>
 
 <body>
-    <a href="index.php">Home</a>
-    <a href="signup.php">Signup</a>
-    <a href="login.php">Login</a>
-    <a href="logout.php">Logout</a>
+
+
+    <?php
+if (isset($_SESSION['pseudo'])) {
+
+    echo '<a href="index.php">Home</a>';
+    echo '<a href="logout.php">Logout</a>';
+
+} else {
+    echo '<a href="signup.php">Signup</a>';
+    echo '<a href="login.php">Login</a>';
+}
+?>
