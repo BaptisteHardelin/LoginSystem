@@ -1,1 +1,2 @@
-config/
+includes/db_handler.inc.php
+sqlFile.sql
