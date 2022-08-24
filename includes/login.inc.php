@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     require_once './db_handler.inc.php';
     require_once './functions.inc.php';
 
-    if (emptyInputLogin($pseudo, $password) !== false) {
+    if (emptyInputLogin($pseudo, $password)) {
         header("Location: http://localhost/LoginSystem/login.php?error=emptyinput");
         exit();
     }

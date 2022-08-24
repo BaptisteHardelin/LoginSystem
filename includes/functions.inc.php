@@ -18,19 +18,6 @@ function emptyInputSignup($pseudo, $email, $password, $repeatPassword)
 
 }
 
-function invalidPseudo($pseudo)
-{
-    $result = null;
-
-    if (!preg_match("/^[a-zA-Z0-9]*$/", $pseudo)) {
-        $result = true;
-    } else {
-        $result = false;
-    }
-
-    return $result;
-}
-
 function invalidEmail($email)
 {
     $result = null;

@@ -30,9 +30,6 @@ if (isset($_GET['error'])) {
         case 'emptyinput':
             echo '<p class=error>Fill in all fields!</p>';
             break;
-        case 'invalidpseudo':
-            echo '<p class=error>Choose a proper pseudo! (without a space)</p>';
-            break;
         case 'invalidemail':
             echo '<p class=error>Choose a proper email!</p>';
             break;

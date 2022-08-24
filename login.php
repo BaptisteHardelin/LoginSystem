@@ -4,8 +4,8 @@
 
 <form action="includes/login.inc.php" method="POST">
     <div>
-        <label for="pseudo">Pseudo or Email</label>
-        <input type="text" name="pseudo" placeholder="Pseudo or Email">
+        <label for="pseudo">Email</label>
+        <input type="email" name="pseudo" placeholder="Pseudo or Email">
     </div>
     <div>
         <label for="password">Password</label>

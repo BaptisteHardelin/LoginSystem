@@ -10,17 +10,12 @@ if (isset($_POST['submit'])) {
     require_once 'db_handler.inc.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputSignup($pseudo, $email, $password, $repeatPassword) !== false) {
+    if (emptyInputSignup($pseudo, $email, $password, $repeatPassword)) {
         header("Location: http://localhost/LoginSystem/signup.php?error=emptyinput");
         exit();
     }
 
-    if (invalidPseudo($pseudo) !== false) {
-        header("Location: http://localhost/LoginSystem/signup.php?error=invalidpseudo");
-        exit();
-    }
-
-    if (invalidEmail($email) !== false) {
+    if (invalidEmail($email)) {
         header("Location: http://localhost/LoginSystem/signup.php?error=invalidemail");
         exit();
     }
@@ -28,17 +23,18 @@ if (isset($_POST['submit'])) {
     // TODO
     /* We can check if the password is 8 length and if they are numbers on it */
 
-    if (passwordMatch($password, $repeatPassword) !== false) {
+    if (passwordMatch($password, $repeatPassword)) {
         header("Location: http://localhost/LoginSystem/signup.php?error=passwordsdontmatch");
         exit();
     }
 
-    if (pseudoExists($conn, $pseudo, $email) !== false) {
+    if (pseudoExists($conn, $pseudo, $email)) {
         header("Location: http://localhost/LoginSystem/signup.php?error=usernametaken");
         exit();
     }
 
     createUser($conn, $pseudo, $email, $password);
+    header("Location: http://localhost/LoginSystem/login.php");
 } else {
     header("Location: http://localhost/LoginSystem/signup.php");
     exit();
